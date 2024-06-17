@@ -141,7 +141,7 @@
     
     <!--Footer Section Start-->
     <div class="bg-warning text-center p-3 ">
-      <p>All right reserved Designed by Wdd B4 - 2024 </p>
+      <p>All right reserved Designed by Wdd B4 - 2024 (diploma) </p>
     </div>
     <!--Footer End-->
 
