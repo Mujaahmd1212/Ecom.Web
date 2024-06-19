@@ -58,6 +58,7 @@
     </div>
 
     <!--forms Display area-->
+    <!--helps to load the insert products.php file in this file (admin file) after click the INSERT PRODUCTS button-->
     <div class="container">
       <?php
       

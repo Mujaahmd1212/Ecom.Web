@@ -1,6 +1,15 @@
 <?php
 include('../includes/connection.php');
+
+if(isset($_POST['insert_cat'])){
+  $cat_tittle=$_POST['cat_tittle'];
+
+  //SQL Query
+  $insert_query="INSERT INTO `categories_tb`()";
+}
+
 ?>
+
 
 <form action="" method="POST">
   <div class="input-group mb-3 mt-5">

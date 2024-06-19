@@ -6,13 +6,9 @@ $db = 'mystoreb4';
 
 $con=mysqli_connect($server, $un, $pass, $db);
 
-if($con){
-  echo "connected Successfully";
-}
-else{
+if(!$con){
   die(mysqli_error($con));
 }
-
 ?>
 
 
