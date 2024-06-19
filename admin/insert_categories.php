@@ -5,7 +5,33 @@ if(isset($_POST['insert_cat'])){
   $cat_tittle=$_POST['cat_tittle'];
 
   //SQL Query
-  $insert_query="INSERT INTO `categories_tb`()";
+  //Check For Duplicates
+
+  $select_Query = "SELECT * FROM `categories_tb` WHERE category_name= '$cat_tittle' ";
+  $runselect_Query=mysqli_query($con, $select_Query);
+  $countRows = mysqli_num_rows($runselect_Query);
+
+  if($countRows>0){
+    echo"<script>alert('category is already enterd')</script>";
+  }
+  else{
+
+
+
+
+
+
+
+  //we use the backtick TABLE 
+  $insert_query="INSERT INTO `categories_tb`(category_name)VALUES('$cat_tittle')";
+  
+  //Execute the variable
+  $run=mysqli_query($con, $insert_query);
+
+  if($run){
+    echo"<script> alert ('Category Insterted!') </script>";
+  }
+  }
 }
 
 ?>
