@@ -17,11 +17,6 @@ if(isset($_POST['insert_cat'])){
   else{
 
 
-
-
-
-
-
   //we use the backtick TABLE 
   $insert_query="INSERT INTO `categories_tb`(category_name)VALUES('$cat_tittle')";
   

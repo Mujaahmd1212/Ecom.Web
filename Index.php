@@ -1,3 +1,7 @@
+<?php //connection file linked 
+  include('includes/connection.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -105,16 +109,24 @@
           <li class="nav-item bg-danger">
             <h4 class="text-light">Brands</h4>
           </li>
+          <!--connection to the data base tables wicha are brand tables in there-->
+          <?php
+              $select_brand_query="SELECT * FROM `brands_tb`";  //backtick
+              $run_query=mysqli_query($con, $select_brand_query);
+              //cut this code ($row_data=mysqli_fetch_assoc($run_query));
+              
+              while ($row_data=mysqli_fetch_assoc($run_query)) {
+                $brand_name=$row_data['brand_name'];
+                $brand_id=$row_data['brand_id'];
+                
 
-          <li><!--Brand 01-->
-            <a href="#" class="nav-link text-light">Brand 01</a>
-          </li>
-          <li><!--Brand 02-->
-            <a href="#" class="nav-link text-light">Brand 02</a>
-          </li>
-          <li><!--Brand 03-->
-            <a href="#" class="nav-link text-light">Brand 03</a>
-          </li>
+                echo" <li class='nav-item'>
+            <a href='index.php?brands=$brand_id' class='nav-link text-light'>$brand_name</a>
+          </li>";
+
+              }
+          ?>
+          
         </ul>
 
         <!--Categories-->
@@ -122,15 +134,25 @@
           <li class="nav-item bg-danger">
             <h4 class="text-light">Categories</h4>
           </li>
-          <li><!--Categories 01-->
-            <a href="#" class="nav-link text-light">Cat 01</a>
-          </li>
-          <li><!--Categories 02-->
-            <a href="#" class="nav-link text-light">Cat 02</a>
-          </li>
-          <li><!--Categories 03-->
-            <a href="#" class="nav-link text-light">Cat 03</a>
-          </li>
+              <?php
+
+                $select_categories_query=" SELECT * FROM `categories_tb`";//bactick for databse
+                $run_query=mysqli_query($con, $select_categories_query);              
+                
+                //echo $row_data['category_name']
+                while ($row_data=mysqli_fetch_assoc ($run_query)){
+
+                  $category_name=$row_data['category_name'];
+                  $category_id=$row_data['category_id'];
+
+                  //echo $row_data['category_name'];
+
+                  echo "<li>
+            <a href='index.php?category=$category_id' class='nav-link text-light'>$category_name</a>
+          </li>";
+                }
+
+              ?>
 
         </ul>
       </div>
