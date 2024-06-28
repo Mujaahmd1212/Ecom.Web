@@ -7,7 +7,7 @@ if(isset($_POST['insert_cat'])){
   //SQL Query
   //Check For Duplicates
 
-  $select_Query = "SELECT * FROM `categories_tb` WHERE category_name= '$cat_tittle' ";
+  $select_Query = "SELECT * FROM `categories_tb` WHERE category_name= '$cat_tittle'";
   $runselect_Query=mysqli_query($con, $select_Query);
   $countRows = mysqli_num_rows($runselect_Query);
 
@@ -15,7 +15,6 @@ if(isset($_POST['insert_cat'])){
     echo"<script>alert('category is already enterd')</script>";
   }
   else{
-
 
   //we use the backtick TABLE 
   $insert_query="INSERT INTO `categories_tb`(category_name)VALUES('$cat_tittle')";
