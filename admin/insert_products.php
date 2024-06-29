@@ -1,43 +1,122 @@
 <?php
 include('../includes/connection.php');
-
-if(isset($_POST['insert_products'])){
-  $products_tittle=$_POST['products_tittle'];
-
-  //SQL Query
-  //Check For Duplicates
-  
-  $select_Query = "SELECT * FROM `products_tb` WHERE product_name= '$products_tittle' ";
-  $runselect_Query=mysqli_query($con, $select_Query);
-  $countRows = mysqli_num_rows($runselect_Query);
-
-  if($countRows>0){
-    echo"<script>alert('product is already enterd')</script>";
-  }
-  else{
-
-  //we use the backtick for SQL TABLE 
-  $insert_query="INSERT INTO `products_tb`(product_name)VALUES('$products_tittle')";
-  
-  //Execute the variable
-  $run=mysqli_query($con, $insert_query);
-
-  if($run){
-    echo"<script> alert ('product Insterted!') </script>";
-   }
-  }
-}
-
 ?>
 
-<form action="" method="POST">
-  <div class="input-group mb-3 mt-5">
-  <span class="input-group-text" id="basic-addon1">Products Tittle</span>
-  <input type="text" class="form-control" name="products_tittle" placeholder="Enter products Name" aria-describedby="basic-addon1">
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insert Products - Admin Panel</title>
 
-<div class="input-group w-10">
-  <input type="submit" name="insert_products" class="form-control bg-warning btn btn-outline-dark" value="insert products">
+<!--Boostrap 5.3 Link-->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-</div>
-</form>
+<!--Fontawesome Link-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!--Custom Css-->
+<link rel="stylesheet" href="/CSS/Style.css">
+
+</head>
+<body class="bg-light">
+  <div class="container">
+    <h1 class="text-center">Insert Product</h1>
+
+  <!--Form Area-->
+    <form action="" method="POST" enctype="multipart/form-data">
+  <!--Product Title-->  
+    <div class="form-outline mb-4 w-50 m-auto">
+        <label class="form-label" for="product_title">Product Title</label>
+        <input type="text" name="product_title" id="product_title" class="form-control" placeholder="Enter Product Title" required="Please Enter The Product Title">
+      </div>
+
+      <!--Product Description-->  
+    <div class="form-outline mb-4 w-50 m-auto">
+        <label class="form-label" for="description">Product Description</label>
+        <input type="text" name="description" id="description" class="form-control" placeholder="Enter Product description" required="Please Enter The Product description">
+      </div>
+
+      <!--Keyword-->
+      <div class="form-outline mb-4 w-50 m-auto">
+        <label class="form-label" for="product_keyword">Product keyword</label>
+        <input type="text" name="keyword" id="keyword" class="form-control" placeholder="Enter Product keyword" required="Please Enter The Product keyword">
+      </div>
+      
+      <!--Categories-->
+        <div class="form-outline mb-4 w-50 m-auto">
+          <select name="product_categories" id="product_categories" class="form-select">
+            <option value="">select category</option>
+      <!--Calling The Category Table-->
+            <?php
+              $select_query="SELECT*FROM `categories_tb`";
+              $run_select_query=mysqli_query($con, $select_query);
+
+              //loop to show table data
+              while($row=mysqli_fetch_assoc($run_select_query)){
+                $cat_name=$row['category_name'];
+                $cat_id=$row['category_id'];
+              
+              echo"<option value='$cat_id'>$cat_name</option>";
+
+              }
+            ?>
+          </select>
+      </div>
+
+      <!--Brands-->
+      <div class="form-outline mb-4 w-50 m-auto">
+          <select name="product_Brands" id="product_Brands" class="form-select">
+            <option value="">select Brand</option>
+            <?php
+            $select_query="SELECT*FROM `brands_tb`";
+            $run_select_query=mysqli_query($con, $select_query);
+
+            while($row_data=mysqli_fetch_assoc($run_select_query)){
+              $brand_name=$row_data['brand_name'];
+              $brand_id=$row_data['brand_id'];
+
+              echo "<option value='$brand_id'>$brand_name</option>";
+            }
+            ?>
+          </select>
+      </div>
+
+       <!--Image-01-->
+       <div class="form-outline mb-4 w-50 m-auto">
+        <label class="form-label" for="product_image1">Product image 01</label>
+        <input type="file" name="product_image1" id="product_image1" class="form-control"  required="Please insert Image-01 ">
+      </div>
+
+      <!--Image-02-->
+      <div class="form-outline mb-4 w-50 m-auto">
+        <label class="form-label" for="product_image2">Product image 02</label>
+        <input type="file" name="product_image2" id="product_image2" class="form-control"  required="Please insert Image-02 ">
+      </div>
+
+      <!--Image-03-->
+      <div class="form-outline mb-4 w-50 m-auto">
+        <label class="form-label" for="product_image3">Product image 03</label>
+        <input type="file" name="product_image3" id="product_image3" class="form-control"  required="Please insert Image-03 ">
+      </div>
+
+      <!--Price-->
+      <div class="form-outline mb-4 w-50 m-auto">
+        <label class="form-label" for="product_price">Product price</label>
+        <input type="text" name="product_price" id="product_price" class="form-control" placeholder="Enter Product price" required="Please Enter The Product keyword">
+      </div>
+
+      <!--Submit Button-->
+      <div class="form-outline mb-4 w-50 m-auto">
+        <input type="submit" name="insert_product" class="btn btn-success" value="insert product">
+
+      </div>
+      
+    </form>
+  </div>
+  
+
+
+<!--Javascript B.Strap Link-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>  
+</body>
+</html>

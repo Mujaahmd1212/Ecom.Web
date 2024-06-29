@@ -36,14 +36,14 @@
       <div class="col-md-12 bg-warning p-3">
         <div class="button text-center">
           <button class="bg-danger">
-            <a href="index.php?insert_products" class="nav-link text-light">Insert Products</a><!--we add the index.php? means load this inside the index.php also we removed the .php bcz we use that index.php? in the start but this link only change if i dont code the 64-77 lines-->
+            <a href="insert_products.php" class="nav-link text-light">Insert Products</a>
           </button>
           <button class="bg-danger">
             <a href="#" class="nav-link text-light ">View Products</a>
           </button>
           <button class="bg-danger">
             <a href="index.php?insert_categories" class="nav-link text-light ">Insert Categories</a>
-          </button>
+          </button><!--we add the index.php? means load this inside the index.php also we removed the .php bcz we use that index.php? in the start but this link only change if i dont code the 64-77 lines-->
           <button class="bg-danger">
             <a href="#" class="nav-link text-light bg-danger">View Categories</a>
           </button>
