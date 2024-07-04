@@ -1,5 +1,47 @@
 <?php
 include('../includes/connection.php');
+
+//button (insert_product)
+if(isset($_POST['insert_product'])){
+  $product_title=$_POST['product_title'];
+  $product_description=$_POST['description'];
+  $product_keyword=$_POST['keyword'];
+  $product_category=$_POST['product_categories'];
+  $product_brand=$_POST['product_brands'];
+  $product_price=$_POST['product_price'];
+  $product_status="true";
+
+  //Access images
+  $product_image1=$_FILES['product_image1']['name'];
+  $product_image2=$_FILES['product_image2']['name'];
+  $product_image3=$_FILES['product_image3']['name'];
+
+  //Access images tmp name
+  $tmp_product_image1=$_FILES['product_image1']['tmp_name'];
+  $tmp_product_image2=$_FILES['product_image2']['tmp_name'];
+  $tmp_product_image3=$_FILES['product_image3']['tmp_name'];
+
+  //Check empty Conditions
+  if($product_title=='' OR $product_description=='' OR $product_keyword=='' OR $product_category=='' OR $product_brand=='' OR $product_price=='' OR $product_image1=='' OR $product_image2=='' OR $product_image3==''){
+    echo"<script> alert('Please Fill All Fields') </script>";
+    exit();
+  }
+  else{
+    move_uploaded_file($tmp_product_image1, "./product_images/$product_image1");
+    move_uploaded_file($tmp_product_image2, "./product_images/$product_image2");
+    move_uploaded_file($tmp_product_image3, "./product_images/$product_image3");
+
+    //now files are moved we can put the query (query means add the data in to the database)
+    //Insert Query
+    $insert_Query="INSERT INTO `products_tb`(`product_title`, `product_detail`, `product_keyword`, `category_id`, `brand_id`, `product_image1`, `product_image2`, `product_image3`, `product_price`, `date`, `satatus`) VALUES ('$product_title','$product_description', '$product_keyword', '$product_category', '$product_brand', '$product_image1', '$product_image2', '$product_image3', '$product_price', NOW(),'$product_status')";
+
+    $run_insert_Query=mysqli_query($con, $insert_Query);
+    if($run_insert_Query){
+      echo"<script> alert('Product inserted successfully') </script>";
+    }
+
+  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -46,6 +88,7 @@ include('../includes/connection.php');
         <div class="form-outline mb-4 w-50 m-auto">
           <select name="product_categories" id="product_categories" class="form-select">
             <option value="">select category</option>
+
       <!--Calling The Category Table-->
             <?php
               $select_query="SELECT*FROM `categories_tb`";
@@ -57,15 +100,15 @@ include('../includes/connection.php');
                 $cat_id=$row['category_id'];
               
               echo"<option value='$cat_id'>$cat_name</option>";
-
               }
             ?>
+
           </select>
       </div>
 
       <!--Brands-->
       <div class="form-outline mb-4 w-50 m-auto">
-          <select name="product_Brands" id="product_Brands" class="form-select">
+          <select name="product_brands" id="product_brands" class="form-select">
             <option value="">select Brand</option>
             <?php
             $select_query="SELECT*FROM `brands_tb`";
