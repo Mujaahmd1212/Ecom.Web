@@ -65,6 +65,10 @@
       <!--Products Area-->
       <div class="col-md-10">
         <div class="row">
+  <!--Fetch data from DB for Products-->
+  <?php
+  $select_query="SELECT*FROM`products_tb`";
+  ?>
           <div class="col-md-4 mb-3">
             <div class="card" style="width: 18rem;">
               <img src="./Images/img2.webp" class="card-img-top" alt="..." >
