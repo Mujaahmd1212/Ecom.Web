@@ -42,7 +42,7 @@
             <a class="nav-link" href="#">Register</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping"></i><sup>3</sup></a>
+            <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping"></i><sup><?php cart_item_count();?></sup></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Total:2500 Rs</a>
@@ -56,6 +56,10 @@
     </div>
   </nav>
   <!--Navbar End-->
+  <!--Call the cart function-->
+  <?php
+      cart();
+  ?>
 
   <!--content area start-->
   <div calss="bg-light">

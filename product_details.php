@@ -56,8 +56,7 @@
     </div>
   </nav>
   <!--Navbar End-->
-
-  <!--calling cart function-->
+  <!--Call the cart function-->
   <?php
       cart();
   ?>
@@ -65,18 +64,18 @@
   <!--content area start-->
   <div calss="bg-light">
     <h3 class="text-center">online store </h3>
-    <p class="text-center">All your elctronics need in one place</p>
+    <p class="text-center">detailed Product Area</p>
 
     <div class="row">
       <!--Products Area-->
       <div class="col-md-10">
         <div class="row">
+
   <!--Fetch data from DB for Products from function-->
   <?php
-      getproducts();
+      view_details();
       getUniqeCategory();
       getuniquebrands();
-  
   ?>
         </div>
       </div>
