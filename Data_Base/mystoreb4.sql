@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 03, 2024 at 02:30 PM
+-- Generation Time: Aug 08, 2024 at 06:41 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -40,6 +40,27 @@ INSERT INTO `brands_tb` (`brand_id`, `brand_name`) VALUES
 (1, 'Samsung'),
 (2, 'apple'),
 (3, 'google pixel');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `card_details`
+--
+
+CREATE TABLE `card_details` (
+  `product_id` int(11) NOT NULL,
+  `ip_address` varchar(100) NOT NULL,
+  `quantity` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `card_details`
+--
+
+INSERT INTO `card_details` (`product_id`, `ip_address`, `quantity`) VALUES
+(4, '::1', 1),
+(2, '::1', 1),
+(3, '::1', 1);
 
 -- --------------------------------------------------------
 
